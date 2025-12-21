@@ -13,8 +13,8 @@ type StringInterner struct {
 
 func NewStringInterner() *StringInterner {
 	return &StringInterner{
-		idxByValue: make(map[string]int32, 256),
-		values:     make([]string, 0, 256),
+		idxByValue: make(map[string]int32),
+		values:     make([]string, 0),
 		resolve:    true,
 	}
 }
@@ -24,8 +24,8 @@ func NewStringInterner() *StringInterner {
 // This can save memory and improve performance in scenarios where the string values are not needed
 func NewStringInternerOnly() *StringInterner {
 	return &StringInterner{
-		idxByValue: make(map[string]int32, 256),
-		values:     make([]string, 0, 256),
+		idxByValue: make(map[string]int32),
+		values:     make([]string, 0),
 		resolve:    false,
 	}
 }

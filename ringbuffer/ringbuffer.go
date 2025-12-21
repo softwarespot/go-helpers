@@ -30,7 +30,14 @@ func (rb *RingBuffer[T]) Iter() iter.Seq2[int, T] {
 }
 
 func (rb *RingBuffer[T]) FirstN(n int) []T {
-	var items []T
+	if n <= 0 {
+		return nil
+	}
+	if n > rb.size {
+		n = rb.size
+	}
+	
+	items := make([]T, 0, n)
 	for _, item := range rb.IterFirstN(n) {
 		items = append(items, item)
 	}
@@ -38,7 +45,14 @@ func (rb *RingBuffer[T]) FirstN(n int) []T {
 }
 
 func (rb *RingBuffer[T]) LastN(n int) []T {
-	var items []T
+	if n <= 0 {
+		return nil
+	}
+	if n > rb.size {
+		n = rb.size
+	}
+	
+	items := make([]T, 0, n)
 	for _, item := range rb.IterLastN(n) {
 		items = append(items, item)
 	}

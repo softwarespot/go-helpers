@@ -142,7 +142,8 @@ func (c *LRUCache[K, V]) Get(key K) (V, bool) {
 		return value, false
 	}
 
-	if node.hasExpired(time.Now()) {
+	now := time.Now()
+	if node.hasExpired(now) {
 		c.deleteNode(node)
 		return value, false
 	}
@@ -161,7 +162,8 @@ func (c *LRUCache[K, V]) Has(key K) bool {
 		return false
 	}
 
-	if node.hasExpired(time.Now()) {
+	now := time.Now()
+	if node.hasExpired(now) {
 		c.deleteNode(node)
 		return false
 	}
@@ -180,7 +182,8 @@ func (c *LRUCache[K, V]) Peek(key K) (V, bool) {
 		return value, false
 	}
 
-	if node.hasExpired(time.Now()) {
+	now := time.Now()
+	if node.hasExpired(now) {
 		c.deleteNode(node)
 		return value, false
 	}

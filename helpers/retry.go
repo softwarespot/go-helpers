@@ -17,7 +17,9 @@ func Retry(fn func(attempt int) error, retries int, retriesWait time.Duration) e
 			return err
 		}
 
-		time.Sleep(retriesWait)
+		if retriesWait > 0 {
+			time.Sleep(retriesWait)
+		}
 		attempt++
 	}
 }

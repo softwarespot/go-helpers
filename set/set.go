@@ -11,7 +11,7 @@ type Set[T comparable] map[T]struct{}
 
 // New creates a new empty set
 func New[T comparable]() Set[T] {
-	return make(Set[T], 256)
+	return make(Set[T])
 }
 
 // NewFromValues creates a new set from the given values
@@ -25,7 +25,7 @@ func NewFromValues[T comparable](vs ...T) Set[T] {
 
 // Add returns true when the value is added; otherwise, false when it already exists in the set
 func (s Set[T]) Add(v T) bool {
-	if s.Has(v) {
+	if _, ok := s[v]; ok {
 		return false
 	}
 
@@ -68,7 +68,7 @@ func (s Set[T]) Size() int {
 // Delete removes the value from the set if it exists.
 // Returns true if the value was deleted; otherwise, false
 func (s Set[T]) Delete(v T) bool {
-	if !s.Has(v) {
+	if _, ok := s[v]; !ok {
 		return false
 	}
 
