@@ -5,7 +5,7 @@ go 1.26.0
 require (
 	github.com/fatih/color v1.19.0
 	github.com/gofrs/flock v0.13.0
-	github.com/mattn/go-sqlite3 v1.14.40
+	github.com/mattn/go-sqlite3 v1.14.47
 )
 
 require (
